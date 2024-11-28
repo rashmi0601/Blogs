@@ -1,0 +1,53 @@
+<div class="form-container">
+  <h1 class="blog-title">Edit Blog Post</h1>
+
+  <%= form_with model: @blog_post, local: true, html: { class: "blog-form" } do |form| %>
+    <% if @blog_post.errors[:title].any? %>
+      <div class="field-error">
+        <%= @blog_post.errors[:title].join(", ") %>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :title, class: "form-label" %>
+      <%= form.text_field :title, class: "form-control" %>
+      <% if @blog_post.errors[:title].any? %>
+        <p class="field-error"><%= @blog_post.errors[:title].first %></p>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :content, class: "form-label" %>
+      <%= form.text_area  :content, class: "form-control", rows: 50 %>
+      <% if @blog_post.errors[:content].any? %>
+        <p class="field-error"><%= @blog_post.errors[:content].first %></p>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :files, "Upload New Files (Existing files will remain intact unless removed below)", class: "form-label" %>
+      <%= form.file_field :files, class: "form-control-file", multiple: true %>
+      <% if @blog_post.errors[:files].any? %>
+        <p class="field-error"><%= @blog_post.errors[:files].first %></p>
+      <% end %>
+    </div>
+
+    <% if @blog_post.files.attached? %>
+      <div class="current-files">
+        <h3>Current Attachments:</h3>
+        <ul>
+          <% @blog_post.files.each do |file| %>
+            <li>
+              <%= link_to file.filename.to_s, url_for(file), target: "_blank", class: "file-link" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= form.submit "Update Blog Post", class: "btn btn-primary" %>
+      <%= link_to "Cancel", blog_post_path(@blog_post), class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>

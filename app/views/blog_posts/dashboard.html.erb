@@ -1,0 +1,47 @@
+<div class="form-container">
+<h1>Welcome to Your Dashboard</h1>
+
+<div class="header">
+  <%= link_to "New Blog Post", new_blog_post_path, class: "btn btn-primary" %>
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+</div>
+
+<hr>
+
+<h2>Blog Posts</h2>
+<% if @approved_blogs.any? %>
+  <% @approved_blogs.each do |blog| %>
+    <div class="blog-post">
+        <h3><%= blog.title %></h3>
+        <p><%= blog.content%></p>
+        <p><strong>Author:</strong> <%= blog.user.email %></p>
+
+        <% if current_user.admin? && blog.status == "pending" %>
+            <%= link_to 'View', blog_post_path(blog),  class: "btn btn-success" %>
+            <%= link_to "Approve", approve_blog_post_path(blog), method: :patch, class: "btn btn-success" %>
+            <%= link_to "Reject", reject_blog_post_path(blog), method: :patch, class: "btn btn-danger" %>
+        <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <p>No approved blogs available yet.</p>
+<% end %>
+
+<hr>
+
+<h2>My Blog Posts</h2>
+<% if @my_blogs.any? %>
+  <% @my_blogs.each do |blog| %>
+    <div class="my-blog-post">
+      <h3><%= blog.title %></h3>
+      <p><%= blog.content %></p>
+      <p><strong>Status:</strong> <%= blog.status.capitalize %></p>
+      <%= link_to "View", blog_post_path(blog), class: "btn btn-secondary" %>
+      <%= link_to "Edit", edit_blog_post_path(blog), class: "btn btn-warning" %>
+
+    </div>
+  <% end %>
+<% else %>
+  <p>You haven't created any blogs yet. <%= link_to "Create one now!", new_blog_post_path %></p>
+<% end %>
+</div>
