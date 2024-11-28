@@ -85,5 +85,7 @@ test:
 production:
   <<: *default
   database: blog_platforms
-  username: blog_platforms
-  password: <%= ENV['BLOG_PLATFORM_DATABASE_PASSWORD'] %>
+  host: dpg-ct4ajj2j1k6c73efh4h0-a
+  post: 5432
+  username: blog_platforms_user
+  password: 3pr7Yq9m0L3ZW66AD0Yf4Le1v6qwfStW
