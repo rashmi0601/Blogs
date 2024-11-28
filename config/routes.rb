@@ -3,9 +3,16 @@ Rails.application.routes.draw do
 
   # Authenticated user routes
   authenticated :user do
-    root 'pages#dashboard', as: :authenticated_root
+    root 'blog_posts#dashboard', as: :authenticated_root
   end
 
   # Public landing page
   root 'pages#home'
+
+  resources :blog_posts do
+    member do
+      patch :approve
+      patch :reject
+    end
+  end
 end

@@ -1,0 +1,32 @@
+<h1>Blog Posts</h1>
+
+<% if current_user.admin? %>
+  <h2>Pending Blog Posts</h2>
+  <ul>
+    <% @blog_posts.each do |post| %>
+      <li>
+        <h3><%= post.title %> (<%= post.status %>)</h3>
+        <p><%= post.content %></p>
+        <%= link_to 'Approve', approve_blog_post_path(post), method: :patch if post.pending? %>
+        <%= link_to 'Reject', reject_blog_post_path(post), method: :patch if post.pending? %>
+        <%= link_to 'View', blog_post_path(post) %> |
+        <%= link_to 'Delete', blog_post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h2>My Blog Posts</h2>
+  <%= link_to 'New Blog Post', new_blog_post_path %>
+  <ul>
+    <% @blog_posts.each do |post| %>
+      <li>
+        <h3><%= post.title %> (<%= post.status %>)</h3>
+        <p><%= post.content %></p>
+        <%= link_to 'View', blog_post_path(post) %>
+        <% if post.user == current_user && post.pending? %>
+          | <%= link_to 'Edit', edit_blog_post_path(post) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

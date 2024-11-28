@@ -1,0 +1,39 @@
+<div class="form-container">
+  <h1 class="blog-title"><%= @blog_post.title %></h1>
+  <p class="blog-meta">
+    <strong>Author:</strong> <%= @blog_post.user.email %> |
+    <strong>Status:</strong> <%= @blog_post.status.capitalize %>
+  </p>
+  <hr>
+
+  <div class="blog-content">
+    <p><%= @blog_post.content %></p>
+  </div>
+
+   <% if @blog_post.files.attached? %>
+     <div class="blog-files">
+       <h3>Attachments:</h3>
+       <ul class="file-list">
+         <% @blog_post.files.each do |file| %>
+           <li class="file-item">
+             <% if file.image? %>
+               <!-- Display image as a thumbnail -->
+               <%= link_to image_tag(file.variant(resize_to_fill: [100, 100]), alt: file.filename, class: "file-thumbnail"), url_for(file), target: "_blank" %>
+             <% else %>
+               <!-- Display link for non-image files -->
+               <%= link_to file.filename.to_s, url_for(file), target: "_blank", class: "file-link" %>
+             <% end %>
+           </li>
+         <% end %>
+       </ul>
+     </div>
+   <% end %>
+
+  <hr>
+  <div class="actions">
+    <%= link_to "Back to Dashboard", authenticated_root_path, class: "btn btn-secondary" %>
+    <% if current_user == @blog_post.user %>
+      <%= link_to "Edit Blog Post", edit_blog_post_path(@blog_post), class: "btn btn-warning" %>
+    <% end %>
+  </div>
+</div>
