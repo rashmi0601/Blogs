@@ -1,0 +1,15 @@
+<h1>Dashboard</h1>
+<p>Welcome, <%= current_user.email %>!</p>
+
+<% if current_user.admin? %>
+  <h2>All Users</h2>
+  <ul>
+    <% @users.each do |user| %>
+      <li><%= user.email %> (<%= user.role %>)</li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You are logged in as a user.</p>
+<% end %>
+
+<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
