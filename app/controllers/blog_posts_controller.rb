@@ -1,6 +1,6 @@
 class BlogPostsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_blog_post, only: %i[show edit update destroy approve reject]
+    before_action :set_blog_post, only: %i[show edit update delete_blog_post approve reject]
     before_action :authorize_admin, only: %i[approve reject]
 
     def dashboard
@@ -42,15 +42,16 @@ class BlogPostsController < ApplicationController
   
     def update
       if @blog_post.update(blog_post_params)
-        redirect_to blog_posts_path, notice: 'Blog post updated successfully.'
+        redirect_to authenticated_root_path, notice: 'Blog post updated successfully.'
       else
         render :edit
       end
     end
   
-    def destroy
+    def delete_blog_post
+      @blog_post = BlogPost.find(params[:id])
       @blog_post.destroy
-      redirect_to blog_posts_path, notice: 'Blog post deleted successfully.'
+      redirect_to authenticated_root_path, notice: 'Blog post deleted successfully.'
     end
   
     def approve

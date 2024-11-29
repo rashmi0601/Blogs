@@ -90,12 +90,12 @@ body {
 
 .btn {
   display: inline-block;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: bold;
   color: #fff;
   background-color: #007bff;
   border: none;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
   text-decoration: none;
@@ -116,8 +116,8 @@ body {
 
 .btn-secondary {
   margin-top: 20px;
-  padding: 10px 15px;
-  font-size: 16px;
+  padding: 5px 10px;
+  font-size: 12px;
   color: #fff;
   background-color: #6c757d;
   border: none;
@@ -171,4 +171,30 @@ form {
 
 .actions .btn {
   margin: 0 10px;
+}
+
+.box-container {
+  border: 1px solid #ddd; /* Light grey border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9; /* Light background color */
+  width: 1200px;
+}
+
+.box-container h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.blog-post, .my-blog-post {
+  margin-bottom: 20px;
+}
+
+.blog-post h3, .my-blog-post h3 {
+  font-size: 20px;
+}
+
+.blog-post p, .my-blog-post p {
+  font-size: 16px;
 }

@@ -1,7 +1,11 @@
-<h1>Welcome to the Portal</h1>
-<% if user_signed_in? %>
-  <%= link_to 'Dashboard', authenticated_root_path %>
-<% else %>
-  <%= link_to 'Log In', new_user_session_path %> |
-  <%= link_to 'Sign Up', new_user_registration_path %>
-<% end %>
+<div style="background-image: url('<%= asset_path('how-blogging-works-933x560.jpg') %>'); background-size: cover; background-position: center center; background-repeat: no-repeat; padding: 400px 0; position: relative; opacity: 0.8;">
+  <div class="form-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.8); padding: 40px; border-radius: 10px; width: 80%; max-width: 500px; min-height: 10vh;">
+    <h1>Welcome Blogger!</h1>
+    <% if user_signed_in? %>
+      <%= link_to 'Dashboard', authenticated_root_path, class: "btn btn-secondary" %>
+    <% else %>
+      <%= link_to 'Log In', new_user_session_path, class: "btn btn-secondary" %>
+      <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+</div>
