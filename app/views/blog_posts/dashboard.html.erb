@@ -19,7 +19,7 @@
           <h3><%= blog.title %></h3>
           <p><%= blog.content %></p>
           <p><strong>Author:</strong> <%= blog.user.email %></p>
-
+          <p><strong>Posted On:</strong> <%= blog.created_at.in_time_zone("Asia/Kolkata").strftime("%-d-%-m-%Y %H:%M:%S") %></p>
           <% if current_user.admin?  %>
             <p><strong>Status:</strong> <%= blog.status %></p>
             <%= link_to "Approve", approve_blog_post_path(blog), method: :patch, class: "btn btn-success" %>
@@ -43,6 +43,7 @@
           <div class="my-blog-post">
             <h3><%= blog.title %></h3>
             <p><%= blog.content %></p>
+            <p><strong>Posted On:</strong> <%= blog.created_at.in_time_zone("Asia/Kolkata").strftime("%-d-%-m-%Y %H:%M:%S") %></p>
             <p><strong>Status:</strong> <%= blog.status.capitalize %></p>
             <%= link_to "View", blog_post_path(blog), class: "btn btn-secondary" %>
             <%= link_to "Edit", edit_blog_post_path(blog), class: "btn btn-warning" %>
