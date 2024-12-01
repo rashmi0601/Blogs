@@ -1,24 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This blog platform operates with two distinct user roles: admin and user. It features essential user authentication and empowers users to upload images or files with their blog posts. Importantly, all posts must receive admin approval before becoming visible to the entire user base. Admins possess the decisive authority to approve or reject blog posts. Once an admin approves a blog post, it is promptly made visible to all users.
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
