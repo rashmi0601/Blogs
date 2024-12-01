@@ -2,7 +2,9 @@
   <div class="header">
     <h1>Welcome to Your Dashboard</h1>
     <div class="top-right">
-      <%= link_to "New Blog Post", new_blog_post_path, class: "btn btn-primary" %>
+      <% if !current_user.admin? %>
+        <%= link_to "New Blog Post", new_blog_post_path, class: "btn btn-primary" %>
+      <% end %>
       <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
     </div>
   </div>
