@@ -22,3 +22,4 @@ module BlogPlatform
     config.time_zone = 'Kolkata'
   end
 end
+
