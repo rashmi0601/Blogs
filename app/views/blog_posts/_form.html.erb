@@ -12,20 +12,14 @@
 
   <div class="form-group">
     <%= form.label :content, class: "form-label" %>
-    <%= form.text_area  :content, class: "form-control", rows: 50 %>
+    <%= form.text_area :content, id: "hidden-content", class: "form-control", style: "display: none;" %>
+    <div id="editor" class="quill-editor">
+      <%= raw @blog_post.content %> <!-- Pre-fill existing content for editing -->
+    </div>
+
     <% if @blog_post.errors[:content].any? %>
       <div class="field-error">
         <%= @blog_post.errors[:content].join(", ") %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :files, "Upload Files", class: "form-label" %>
-    <%= form.file_field :files, class: "form-control-file", multiple: true %>
-    <% if @blog_post.errors[:files].any? %>
-      <div class="field-error">
-        <%= @blog_post.errors[:files].join(", ") %>
       </div>
     <% end %>
   </div>

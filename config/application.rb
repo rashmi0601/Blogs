@@ -20,6 +20,7 @@ module BlogPlatform
     # config.eager_load_paths << Rails.root.join("extras")
     config.active_record.default_timezone = :local
     config.time_zone = 'Kolkata'
+    config.assets.paths << Rails.root.join('node_modules')
   end
 end
 
