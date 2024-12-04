@@ -19,10 +19,8 @@
     <div class="form-group">
     <%= form.label :content, class: "form-label" %>
   
-    <!-- Hidden textarea -->
     <%= form.text_area :content, id: "hidden-content", class: "form-control", style: "display: none;" %>
   
-    <!-- Visible Quill editor -->
     <div id="editor" class="quill-editor">
       <%= raw @blog_post.content %> <!-- Pre-fill Quill content for editing -->
     </div>
